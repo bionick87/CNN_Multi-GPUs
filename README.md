@@ -7,3 +7,5 @@ I used fbcunn from Facebook AI Research,for installation detail you can refer at
 
 https://github.com/facebook/fbcunn/blob/master/INSTALL.md
 
+Before using this code should be changed [config.lua] to set the paths 
+
