@@ -58,7 +58,7 @@ local function validation()
      testAccuracy = result.totalValid * 100
      print(result)
      
-end -- END: local function train()
+end -- END: local function validation()
 
 
 local tm = torch.Timer()
