@@ -9,3 +9,5 @@ https://github.com/facebook/fbcunn/blob/master/INSTALL.md
 
 Before using this code should be changed [config.lua] to set the paths 
 
+The code is tested with CIFAR-10 dataset, it Consists of 60000 32x32 color images in 10 classes, with 6000 images per class.
+
