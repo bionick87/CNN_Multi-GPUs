@@ -1,4 +1,4 @@
--- <Nicolo Savioli> --
+-- <Nicolo' Savioli> --
 
 require 'torch'
 require 'nn'
