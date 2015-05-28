@@ -98,6 +98,6 @@ if opt.dropout then
   model:add(nn.Dropout(dropout_p))
 end
 
-model:add(nn.Linear(classifer_hidden_units[1], 10))
+model:add(nn.Linear(classifer_hidden_units[1], num_classes))
 
 
