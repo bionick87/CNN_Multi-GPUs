@@ -99,28 +99,28 @@ optimator = nn.Optim(model, optim_state)
 ----------------------------------------------------------------
 
 local function train()
-   
+
   -- shuffle at each epoch --
   shuffle = torch.randperm(trsize)
   for t = 1,trainData:size(), opt.batch_size do
-      
-         local k=1     
-
+      if (t+ opt.batch_size-1) <= trainData:size() then
+         local k=1
+ 
          -- disp progress --
          xlua.progress(t, trainData:size())
-     
+
          -- create mini batch --
-         input  = torch.Tensor(opt.batch_size,sample_size[1],sample_size[2],sample_size[2])
+         input  = torch.Tensor(opt.batch_size,sample_size[1],sample_size[2],sample_size[3])
          target = torch.Tensor(opt.batch_size)
 
          for i = t,math.min(t+ opt.batch_size-1,trainData:size()) do
               -- load new sample --
-              input [k]    = trainData.data[shuffle[i]]       
-              target[k]    = trainData.labels[shuffle[i]]                           
-              if opt.type == 'float' then input  = input:float() target = target:float() 
+              input [k]    = trainData.data[shuffle[i]]
+              target[k]    = trainData.labels[shuffle[i]]
+              if opt.type == 'float' then input  = input:float() target = target:float()
               elseif opt.type == 'cuda' then input = input:cuda() target = target:cuda() end
             k=k+1
-         end 
+         end
 
          f, output = optimator:optimize(optim.sgd,input,target,criterion)
          if nGPUs > 1 then cutorch.synchronize() end
@@ -130,8 +130,9 @@ local function train()
          -- print confusion matrix --
          print(confusion)
          -- next epoch --
-         confusion:zero() 
-   end        
+         confusion:zero()
+      end
+  end
 end -- END: local function train()
 
 
