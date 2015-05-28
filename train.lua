@@ -132,7 +132,7 @@ local function train()
          -- next epoch --
          confusion:zero()
       end
-  end
+   end
 end -- END: local function train()
 
 
